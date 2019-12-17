@@ -1,20 +1,10 @@
-import smbus2
-import bme280
-import time
+
 import RPi.GPIO as GPIO
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
 
-port = 1
-address = 0x76
-bus = smbus2.SMBus(port)
-
-calibration_params = bme280.load_calibration_params(bus, address)
-
-data = bme280.sample(bus, address, calibration_params)
 
 pins = {
    23 : {'name' : 'GPIO 23', 'state' : GPIO.LOW},
